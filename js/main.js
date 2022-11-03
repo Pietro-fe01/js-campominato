@@ -3,6 +3,8 @@
 /*---------------
     FUNCTIONS
 ---------------*/
+// Funzione che controlla quale difficoltà è stata scelta e ritorna il numero di
+// caselle da generare
 function checkSelectValue(select){
     if (select.selectedIndex === 1){
         return 49;
@@ -13,6 +15,23 @@ function checkSelectValue(select){
     }
 };
 
+// Funzione che genera un numero random tra min e max compresi
+function getRndInteger(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) ) + min;
+}
+
+// Funzione che genera 16 bombe
+function bombsGenerator(bombsArray){
+    bombsArray = [];
+    while(bombsArray.length < 16){
+        let numGen = getRndInteger(1, checkSelectValue(selectBody));
+        if (!bombsArray.includes(numGen)){
+            bombsArray.push(numGen);
+        }
+    }
+    return bombsArray;
+}
+
 /*---------------
     MAIN
 ---------------*/
@@ -20,6 +39,7 @@ const cellContainer = document.querySelector(".cell-container");
 const playGameButton = document.getElementById("play-game");
 const infoGameButton = document.getElementById("info-button");
 const selectBody = document.getElementById("select-body");
+const bombsList = [];
 
 /*L'utente clicca su un bottone che genererà una griglia di gioco quadrata.
 Ogni cella ha un numero progressivo, da 1 a 100.
@@ -50,5 +70,6 @@ playGameButton.addEventListener("click", function(){
     
             cellContainer.append(cellSquare);
         }
+        console.log(bombsGenerator(bombsList));
     }  
 });
