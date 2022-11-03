@@ -145,7 +145,7 @@ footer {
     background-color: rgba(0, 0, 0, 0.6);
 }
 
-#end-game h2{
+#win-lose-message{
     position: absolute;
     top: 35%;
     left: 50%;

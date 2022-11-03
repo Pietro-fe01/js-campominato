@@ -46,6 +46,7 @@ const infoGameButton = document.getElementById("info-button");
 const GameScore = document.getElementById("game-score");
 const endGameBlock = document.getElementById("end-game");
 const endGameButton = document.getElementById("end-game-button");
+const winLoseMessage =document.getElementById("win-lose-message");
 
 /*L'utente clicca su un bottone che genererà una griglia di gioco quadrata.
 Ogni cella ha un numero progressivo, da 1 a 100.
@@ -57,7 +58,7 @@ playGameButton.addEventListener("click", function(){
 
         let scorePoints = 0;
         GameScore.classList.remove("d-none");
-        GameScore.innerHTML = `SCORE: ${scorePoints}`;
+        GameScore.innerHTML = `SCORE ${scorePoints}`;
 
         cellContainer.innerHTML = "";
 
@@ -87,15 +88,19 @@ playGameButton.addEventListener("click", function(){
 
                 if(cellSquare.classList.contains("blue-bg-color")){
                     cellSquare.removeEventListener("click", checkingSquare);
-                    GameScore.innerHTML = `SCORE: ${scorePoints += 1}`;
-                } else if(cellSquare.classList.contains("red-bg-color")){
-                    endGameBlock.classList.remove("d-none");
-                    for(let i=1; i<bombsList.length; i++){
-                        let x = document.querySelector(`.cell-item:nth-child(${bombsList[i]})`);
-                        x.classList.add("red-bg-color");
-                        cellSquare.removeEventListener("click", checkingSquare);
+                    GameScore.innerHTML = `SCORE ${scorePoints += 1}`;
+                    if (scorePoints === (checkSelectValue(selectBody) - 16)){
+                        winLoseMessage.innerHTML = "Hai vinto!";
+                        endGameBlock.classList.remove("d-none");
                     }
-                    GameScore.innerHTML = `TOTAL SCORERED: ${scorePoints}`;
+                } else if(cellSquare.classList.contains("red-bg-color")){
+                    for(let i=1; i<bombsList.length; i++){
+                        let findAllBombs = document.querySelector(`.cell-item:nth-child(${bombsList[i]})`);
+                        findAllBombs.classList.add("red-bg-color");
+                    }
+                    winLoseMessage.innerHTML = "Hai perso!";
+                    endGameBlock.classList.remove("d-none");
+                    GameScore.innerHTML = `TOTAL SCORED - ${scorePoints}`;
                 }
             });
             cellContainer.append(cellSquare);
@@ -106,3 +111,4 @@ playGameButton.addEventListener("click", function(){
 endGameButton.addEventListener("click", function(){
     location.reload();
 });
+
