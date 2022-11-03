@@ -52,6 +52,7 @@ function bombsLocator(bombsList, cells, points){
     if(cells.classList.contains("red-bg-color")){
         for(let i=0; i<bombsList.length; i++){
             let findAllBombs = document.querySelector(`.cell-item:nth-child(${bombsList[i]})`);
+            findAllBombs.innerHTML = `<i class="fa-solid fa-bomb"></i>`
             findAllBombs.classList.add("red-bg-color");
         }
         winLoseMessage.innerHTML = "Hai perso!";
@@ -99,7 +100,7 @@ playGameButton.addEventListener("click", function(){
             } else {
                 cellSquare.classList.add("cell-item", "difficulty-normal");
             }
-            cellSquare.innerHTML = i;
+            cellSquare.innerHTML = ``;
     
             /*Quando l'utente clicca su ogni cella, la cella cliccata si colora di 
             azzurro ed emetto un messaggio in console con il numero della cella 
@@ -112,6 +113,7 @@ playGameButton.addEventListener("click", function(){
                 }
 
                 if(cellSquare.classList.contains("blue-bg-color")){
+                    cellSquare.innerHTML = `<i class="fa-regular fa-life-ring"></i>`
                     cellSquare.removeEventListener("click", checkingSquare);
                     GameScore.innerHTML = `SCORE ${scorePoints += 1}`;
                     winTarget(bombsList, scorePoints, GameScore);
