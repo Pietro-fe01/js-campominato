@@ -73,7 +73,6 @@ const GameScore = document.getElementById("game-score");
 const endGameBlock = document.getElementById("end-game");
 const endGameButton = document.getElementById("end-game-button");
 const winLoseMessage = document.getElementById("win-lose-message");
-const totalScored = document.getElementById("total-scored");
 
 /*L'utente clicca su un bottone che genererà una griglia di gioco quadrata.
 Ogni cella ha un numero progressivo, da 1 a 100.
