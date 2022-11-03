@@ -40,7 +40,7 @@ function winTarget(bombsList, points, GameScore){
         endGameBlock.classList.remove("d-none");
         endGameBlock.classList.add("d-flex");
         GameScore.innerHTML = `TOTAL SCORED - ${points}`;
-        for(let i=1; i<bombsList.length; i++){
+        for(let i=0; i<bombsList.length; i++){
             let findAllBombs = document.querySelector(`.cell-item:nth-child(${bombsList[i]})`);
             findAllBombs.classList.add("yellow-bg-color");
         }
