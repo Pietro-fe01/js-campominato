@@ -26,8 +26,7 @@ Ogni cella ha un numero progressivo, da 1 a 100.
 Se non si sceglie la difficoltà, il gioco non parte.*/
 
 playGameButton.addEventListener("click", function(){
-    if(selectBody.value === "default"){
-    } else {
+    if(selectBody.value !== "default"){
         infoGameButton.classList.add("d-none");
         cellContainer.innerHTML = "";
         for(let i=1; i<= checkSelectValue(selectBody); i++){
@@ -51,5 +50,5 @@ playGameButton.addEventListener("click", function(){
     
             cellContainer.append(cellSquare);
         }
-    } 
+    }  
 });
