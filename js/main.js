@@ -40,7 +40,6 @@ const playGameButton = document.getElementById("play-game");
 const cellContainer = document.querySelector(".cell-container");
 const infoGameButton = document.getElementById("info-button");
 const GameScore = document.getElementById("game-score");
-let bombsList;
 
 /*L'utente clicca su un bottone che genererà una griglia di gioco quadrata.
 Ogni cella ha un numero progressivo, da 1 a 100.
@@ -52,11 +51,11 @@ playGameButton.addEventListener("click", function(){
 
         let scorePoints = 0;
         GameScore.classList.remove("d-none");
-        GameScore.innerHTML = `SCORE ${scorePoints}`;
+        GameScore.innerHTML = `SCORE: ${scorePoints}`;
 
         cellContainer.innerHTML = "";
 
-        bombsList = (bombsGenerator());
+        let bombsList = (bombsGenerator());
         console.log(bombsList)
         
         for(let i=1; i<= checkSelectValue(selectBody); i++){
@@ -73,18 +72,23 @@ playGameButton.addEventListener("click", function(){
             /*Quando l'utente clicca su ogni cella, la cella cliccata si colora di 
             azzurro ed emetto un messaggio in console con il numero della cella 
             cliccata.*/
-            cellSquare.addEventListener("click", function pino(){
+            cellSquare.addEventListener("click", function checkingSquare(){
                 if(bombsList.includes(i)){
-                    this.classList.add("red-bg-color");
+                    cellSquare.classList.add("red-bg-color");
                 } else {
-                    this.classList.add("blue-bg-color");
-                    if(this.classList.contains("blue-bg-color")){
-                        this.removeEventListener("click", pino);
-                        scorePoints += 1;
-                        GameScore.innerHTML = `SCORE ${scorePoints}`;
+                    cellSquare.classList.add("blue-bg-color");
+                }
+
+                if(cellSquare.classList.contains("blue-bg-color")){
+                    cellSquare.removeEventListener("click", checkingSquare);
+                    GameScore.innerHTML = `SCORE: ${scorePoints += 1}`;
+                } else if(cellSquare.classList.contains("red-bg-color")){
+                    for(let i=1; i<bombsList.length; i++){
+                        let x = document.querySelector(`.cell-item:nth-child(${bombsList[i]})`);
+                        x.classList.add("red-bg-color");
+                        cellSquare.removeEventListener("click", checkingSquare);
                     }
                 }
-                console.log(this.innerHTML);
             });
             cellContainer.append(cellSquare);
         }
