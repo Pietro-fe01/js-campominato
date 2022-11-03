@@ -52,7 +52,7 @@ function bombsLocator(bombsList, cells, points){
     if(cells.classList.contains("red-bg-color")){
         for(let i=0; i<bombsList.length; i++){
             let findAllBombs = document.querySelector(`.cell-item:nth-child(${bombsList[i]})`);
-            findAllBombs.innerHTML = `<i class="fa-solid fa-bomb"></i>`
+            findAllBombs.innerHTML = `<i class="fa-solid fa-bomb"></i>`;
             findAllBombs.classList.add("red-bg-color");
         }
         winLoseMessage.innerHTML = "Hai perso!";
@@ -72,7 +72,8 @@ const infoGameButton = document.getElementById("info-button");
 const GameScore = document.getElementById("game-score");
 const endGameBlock = document.getElementById("end-game");
 const endGameButton = document.getElementById("end-game-button");
-const winLoseMessage =document.getElementById("win-lose-message");
+const winLoseMessage = document.getElementById("win-lose-message");
+const totalScored = document.getElementById("total-scored");
 
 /*L'utente clicca su un bottone che genererà una griglia di gioco quadrata.
 Ogni cella ha un numero progressivo, da 1 a 100.
@@ -110,10 +111,10 @@ playGameButton.addEventListener("click", function(){
                     cellSquare.classList.add("red-bg-color");
                 } else {
                     cellSquare.classList.add("blue-bg-color");
+                    cellSquare.innerHTML = `<i class="fa-regular fa-life-ring"></i>`
                 }
 
                 if(cellSquare.classList.contains("blue-bg-color")){
-                    cellSquare.innerHTML = `<i class="fa-regular fa-life-ring"></i>`
                     cellSquare.removeEventListener("click", checkingSquare);
                     GameScore.innerHTML = `SCORE ${scorePoints += 1}`;
                     winTarget(bombsList, scorePoints, GameScore);

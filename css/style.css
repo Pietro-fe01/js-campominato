@@ -58,6 +58,21 @@ footer{
     padding: 0 1.5625rem;
 }
 
+.difficulty-insane{
+    width: calc(100% / 10);
+    height: calc(100% / 10);
+}
+
+.difficulty-hard{
+    width: calc(100% / 9);
+    height: calc(100% / 9);
+}
+
+.difficulty-normal{
+    width: calc(100% / 7);
+    height: calc(100% / 7);
+}
+
 /*---------------
     HEADER
 ---------------*/
@@ -127,21 +142,6 @@ main #game-score{
     padding: .625rem 0;
 }
 
-.difficulty-insane{
-    width: calc(100% / 10);
-    height: calc(100% / 10);
-}
-
-.difficulty-hard{
-    width: calc(100% / 9);
-    height: calc(100% / 9);
-}
-
-.difficulty-normal{
-    width: calc(100% / 7);
-    height: calc(100% / 7);
-}
-
 /*---------------
     FOOTER
 ---------------*/
@@ -164,11 +164,22 @@ footer {
     align-items: center;
 }
 
-#win-lose-message{
-    font-size: 6.25rem;
-    text-decoration: underline;
+#win-lose-message,
+#total-scored{
     color: white;
     margin: 1.25rem 0;
+}
+
+#total-scored{
+    position: absolute;
+    left: 10%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#win-lose-message{
+    text-decoration: underline;
+    font-size: 6.25rem;
 }
 
 #end-game-button{
