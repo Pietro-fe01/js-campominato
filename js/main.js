@@ -32,6 +32,10 @@ function bombsGenerator(){
     return bombsArray;
 }
 
+function restartGame(){
+    location.reload();
+}
+
 /*---------------
     MAIN
 ---------------*/
@@ -40,6 +44,8 @@ const playGameButton = document.getElementById("play-game");
 const cellContainer = document.querySelector(".cell-container");
 const infoGameButton = document.getElementById("info-button");
 const GameScore = document.getElementById("game-score");
+const endGameBlock = document.getElementById("end-game");
+const endGameButton = document.getElementById("end-game-button");
 
 /*L'utente clicca su un bottone che genererà una griglia di gioco quadrata.
 Ogni cella ha un numero progressivo, da 1 a 100.
@@ -59,7 +65,7 @@ playGameButton.addEventListener("click", function(){
         console.log(bombsList)
         
         for(let i=1; i<= checkSelectValue(selectBody); i++){
-            const cellSquare = document.createElement("div");
+            let cellSquare = document.createElement("div");
             if(selectBody.value === "insane"){
                 cellSquare.classList.add("cell-item", "difficulty-insane");
             } else if(selectBody.value === "hard"){
@@ -83,14 +89,20 @@ playGameButton.addEventListener("click", function(){
                     cellSquare.removeEventListener("click", checkingSquare);
                     GameScore.innerHTML = `SCORE: ${scorePoints += 1}`;
                 } else if(cellSquare.classList.contains("red-bg-color")){
+                    endGameBlock.classList.remove("d-none");
                     for(let i=1; i<bombsList.length; i++){
                         let x = document.querySelector(`.cell-item:nth-child(${bombsList[i]})`);
                         x.classList.add("red-bg-color");
                         cellSquare.removeEventListener("click", checkingSquare);
                     }
+                    GameScore.innerHTML = `TOTAL SCORERED: ${scorePoints}`;
                 }
             });
             cellContainer.append(cellSquare);
         }
-    }  
+    }
+});
+
+endGameButton.addEventListener("click", function(){
+    location.reload();
 });
