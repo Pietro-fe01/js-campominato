@@ -1,0 +1,172 @@
+/*---------------
+    RESET
+---------------*/
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+button{
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+/*---------------
+    UTILITIES
+---------------*/
+.blue-bg-color{
+    background-color: blue;
+}
+
+/*---------------
+    COMMON
+---------------*/
+header,
+footer{
+    height: 3.75rem;
+    display: flex;
+    align-items: center;
+    padding: 0 1.5625rem;
+}
+
+/*---------------
+    HEADER
+---------------*/
+header {
+    justify-content: space-between;
+    margin: auto;
+    width: 68.75rem;
+}
+
+header .title{
+    display: flex;
+    align-items: center;
+}
+
+header .title h1{
+    margin-left: .625rem;
+}
+
+header img{
+    width: 3.125rem;
+}
+
+header select,
+header button{
+    background-color: #e9e9ed;
+    border-radius: .25rem;
+}
+
+header select{
+    width: 10.625rem;
+}
+
+header button{
+    padding: .125rem 1.875rem;
+    border: 1px solid #8f8f9d;
+}
+
+/*---------------
+    MAIN
+---------------*/
+main{
+    flex-grow: 1;
+    background-color: #7fffd4;
+    display: flex;
+}
+
+main .cell-container {
+    width: 31.25rem;
+    height: 31.25rem;
+    margin: auto;
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+main .cell-container .cell-item {
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: crosshair;
+}
+
+.difficulty-insane{
+    width: calc(100% / 10);
+    height: calc(100% / 10);
+}
+
+.difficulty-hard{
+    width: calc(100% / 9);
+    height: calc(100% / 9);
+}
+
+.difficulty-normal{
+    width: calc(100% / 7);
+    height: calc(100% / 7);
+}
+
+/*---------------
+    FOOTER
+---------------*/
+footer {
+    margin: auto;
+    width: 68.75rem;
+}
+
+/*---------------
+    ANIMATION
+---------------*/
+.d-none{
+    display: none;
+}
+
+#info-button{
+    height: 100px;
+    width: 200px;
+    background: black;
+    border: none;
+    border-top: 4px solid red;
+    border-radius: 0 0 0.2em 0.2em;
+    color: #fff;
+    font-family: Helvetica, Arial, Sans-serif;
+    font-size: 1em;
+    transform-origin: 50% 5em;
+    animation: wiggle 1.5s linear infinite;
+    margin: auto;
+    cursor: default;
+}
+
+@keyframes wiggle {
+    0%, 7% {
+        transform: rotateZ(0);
+    }
+    15% {
+        transform: rotateZ(-15deg);
+    }
+    20% {
+        transform: rotateZ(10deg);
+    }
+    25% {
+        transform: rotateZ(-10deg);
+    }
+    30% {
+        transform: rotateZ(6deg);
+    }
+    35% {
+        transform: rotateZ(-4deg);
+    }
+    40%, 100% {
+        transform: rotateZ(0);
+    }
+}
+  
