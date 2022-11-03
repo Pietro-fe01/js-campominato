@@ -30,6 +30,15 @@ button{
     background-color: red;
 }
 
+.d-none{
+    display: none;
+}
+
+.d-flex{
+    display: flex;
+    flex-direction: column;
+}
+
 /*---------------
     COMMON
 ---------------*/
@@ -143,28 +152,23 @@ footer {
     right: 0;
     bottom: 0;
     background-color: rgba(0, 0, 0, 0.6);
+    justify-content: center;
+    align-items: center;
 }
 
 #win-lose-message{
-    position: absolute;
-    top: 35%;
-    left: 50%;
-    transform: translate(-47%, -50%);
     font-size: 6.25rem;
     text-decoration: underline;
     color: white;
+    margin: 1.25rem 0;
 }
 
 #end-game-button{
     font-size: 30pt;
     font-family: 'Press Start 2p';
-    position: absolute;
-    top: 55%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     text-align: center;
 	display: inline-block;
-	margin:5px;
+    margin: 1.25rem 0;
     font-weight: bold;
     padding: 10px 0 10px 10px ;
     background-color: lightgray;
@@ -177,17 +181,13 @@ footer {
 
 #end-game-button:active {
 	box-shadow: none;
-	position: relative;
-	top: 56%;
+    position: relative;
+    top: 5px;
 }
 
 /*---------------
     ANIMATION
 ---------------*/
-.d-none{
-    display: none;
-}
-
 #info-button{
     height: 100px;
     width: 200px;

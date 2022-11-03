@@ -32,8 +32,28 @@ function bombsGenerator(){
     return bombsArray;
 }
 
-function restartGame(){
-    location.reload();
+// Funzione che permette la vincita se si raggiungono 33 - 65 - 84 punti 
+function winPoints(points, GameScore){
+    if (points === (checkSelectValue(selectBody) - 16)){
+        winLoseMessage.innerHTML = "Hai vinto!";
+        endGameBlock.classList.remove("d-none");
+        endGameBlock.classList.add("d-flex");
+        GameScore.innerHTML = `TOTAL SCORED - ${points}`;
+    }
+}
+
+// Funzione che trovando una bomba mostra tutte le altre posizioni + lose game
+function bombsLocator(bombsList, cells, points){
+    if(cells.classList.contains("red-bg-color")){
+        for(let i=1; i<bombsList.length; i++){
+            let findAllBombs = document.querySelector(`.cell-item:nth-child(${bombsList[i]})`);
+            findAllBombs.classList.add("red-bg-color");
+        }
+        winLoseMessage.innerHTML = "Hai perso!";
+        endGameBlock.classList.remove("d-none");
+        endGameBlock.classList.add("d-flex");
+        GameScore.innerHTML = `TOTAL SCORED - ${points}`;
+    }
 }
 
 /*---------------
@@ -89,18 +109,9 @@ playGameButton.addEventListener("click", function(){
                 if(cellSquare.classList.contains("blue-bg-color")){
                     cellSquare.removeEventListener("click", checkingSquare);
                     GameScore.innerHTML = `SCORE ${scorePoints += 1}`;
-                    if (scorePoints === (checkSelectValue(selectBody) - 16)){
-                        winLoseMessage.innerHTML = "Hai vinto!";
-                        endGameBlock.classList.remove("d-none");
-                    }
-                } else if(cellSquare.classList.contains("red-bg-color")){
-                    for(let i=1; i<bombsList.length; i++){
-                        let findAllBombs = document.querySelector(`.cell-item:nth-child(${bombsList[i]})`);
-                        findAllBombs.classList.add("red-bg-color");
-                    }
-                    winLoseMessage.innerHTML = "Hai perso!";
-                    endGameBlock.classList.remove("d-none");
-                    GameScore.innerHTML = `TOTAL SCORED - ${scorePoints}`;
+                    winPoints(scorePoints, GameScore);
+                } else {
+                    bombsLocator(bombsList, cellSquare, scorePoints);
                 }
             });
             cellContainer.append(cellSquare);
@@ -108,6 +119,7 @@ playGameButton.addEventListener("click", function(){
     }
 });
 
+// Trovando la bomba apparirà un bottone che cliccato riaggiornerà la pagina
 endGameButton.addEventListener("click", function(){
     location.reload();
 });
