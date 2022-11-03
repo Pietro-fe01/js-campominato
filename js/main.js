@@ -33,19 +33,24 @@ function bombsGenerator(){
 }
 
 // Funzione che permette la vincita se si raggiungono 33 - 65 - 84 punti 
-function winPoints(points, GameScore){
+// e alla fine rileva sempre la posizione delle bombe
+function winTarget(bombsList, points, GameScore){
     if (points === (checkSelectValue(selectBody) - 16)){
         winLoseMessage.innerHTML = "Hai vinto!";
         endGameBlock.classList.remove("d-none");
         endGameBlock.classList.add("d-flex");
         GameScore.innerHTML = `TOTAL SCORED - ${points}`;
+        for(let i=1; i<bombsList.length; i++){
+            let findAllBombs = document.querySelector(`.cell-item:nth-child(${bombsList[i]})`);
+            findAllBombs.classList.add("yellow-bg-color");
+        }
     }
 }
 
 // Funzione che trovando una bomba mostra tutte le altre posizioni + lose game
 function bombsLocator(bombsList, cells, points){
     if(cells.classList.contains("red-bg-color")){
-        for(let i=1; i<bombsList.length; i++){
+        for(let i=0; i<bombsList.length; i++){
             let findAllBombs = document.querySelector(`.cell-item:nth-child(${bombsList[i]})`);
             findAllBombs.classList.add("red-bg-color");
         }
@@ -109,7 +114,7 @@ playGameButton.addEventListener("click", function(){
                 if(cellSquare.classList.contains("blue-bg-color")){
                     cellSquare.removeEventListener("click", checkingSquare);
                     GameScore.innerHTML = `SCORE ${scorePoints += 1}`;
-                    winPoints(scorePoints, GameScore);
+                    winTarget(bombsList, scorePoints, GameScore);
                 } else {
                     bombsLocator(bombsList, cellSquare, scorePoints);
                 }

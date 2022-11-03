@@ -30,6 +30,10 @@ button{
     background-color: red;
 }
 
+.yellow-bg-color{
+    background-color: yellow;
+}
+
 .d-none{
     display: none;
 }
