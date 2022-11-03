@@ -85,6 +85,7 @@ main{
     flex-grow: 1;
     background-color: #7fffd4;
     display: flex;
+    flex-direction: column;
 }
 
 main .cell-container {
@@ -102,6 +103,11 @@ main .cell-container .cell-item {
     justify-content: center;
     align-items: center;
     cursor: crosshair;
+}
+
+main #game-score{
+    align-self: center;
+    padding: .625rem 0;
 }
 
 .difficulty-insane{
@@ -146,8 +152,8 @@ footer {
     font-size: 1em;
     transform-origin: 50% 5em;
     animation: wiggle 1.5s linear infinite;
-    margin: auto;
     cursor: default;
+    margin: auto;
 }
 
 @keyframes wiggle {

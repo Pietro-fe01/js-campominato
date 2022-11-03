@@ -35,10 +35,11 @@ function bombsGenerator(){
 /*---------------
     MAIN
 ---------------*/
-const cellContainer = document.querySelector(".cell-container");
-const playGameButton = document.getElementById("play-game");
-const infoGameButton = document.getElementById("info-button");
 const selectBody = document.getElementById("select-body");
+const playGameButton = document.getElementById("play-game");
+const cellContainer = document.querySelector(".cell-container");
+const infoGameButton = document.getElementById("info-button");
+const GameScore = document.getElementById("game-score");
 let bombsList;
 
 /*L'utente clicca su un bottone che genererà una griglia di gioco quadrata.
@@ -48,6 +49,11 @@ Se non si sceglie la difficoltà, il gioco non parte.*/
 playGameButton.addEventListener("click", function(){
     if(selectBody.value !== "default"){
         infoGameButton.classList.add("d-none");
+
+        let scorePoints = 0;
+        GameScore.classList.remove("d-none");
+        GameScore.innerHTML = `SCORE ${scorePoints}`;
+
         cellContainer.innerHTML = "";
 
         bombsList = (bombsGenerator());
@@ -67,11 +73,16 @@ playGameButton.addEventListener("click", function(){
             /*Quando l'utente clicca su ogni cella, la cella cliccata si colora di 
             azzurro ed emetto un messaggio in console con il numero della cella 
             cliccata.*/
-            cellSquare.addEventListener("click", function(){
+            cellSquare.addEventListener("click", function pino(){
                 if(bombsList.includes(i)){
                     this.classList.add("red-bg-color");
                 } else {
                     this.classList.add("blue-bg-color");
+                    if(this.classList.contains("blue-bg-color")){
+                        this.removeEventListener("click", pino);
+                        scorePoints += 1;
+                        GameScore.innerHTML = `SCORE ${scorePoints}`;
+                    }
                 }
                 console.log(this.innerHTML);
             });
