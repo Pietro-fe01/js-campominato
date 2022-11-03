@@ -21,8 +21,8 @@ function getRndInteger(min, max) {
 }
 
 // Funzione che genera 16 bombe
-function bombsGenerator(bombsArray){
-    bombsArray = [];
+function bombsGenerator(){
+    let bombsArray = [];
     while(bombsArray.length < 16){
         let numGen = getRndInteger(1, checkSelectValue(selectBody));
         if (!bombsArray.includes(numGen)){
@@ -39,7 +39,7 @@ const cellContainer = document.querySelector(".cell-container");
 const playGameButton = document.getElementById("play-game");
 const infoGameButton = document.getElementById("info-button");
 const selectBody = document.getElementById("select-body");
-const bombsList = [];
+let bombsList;
 
 /*L'utente clicca su un bottone che genererà una griglia di gioco quadrata.
 Ogni cella ha un numero progressivo, da 1 a 100.
@@ -49,6 +49,10 @@ playGameButton.addEventListener("click", function(){
     if(selectBody.value !== "default"){
         infoGameButton.classList.add("d-none");
         cellContainer.innerHTML = "";
+
+        bombsList = (bombsGenerator());
+        console.log(bombsList)
+        
         for(let i=1; i<= checkSelectValue(selectBody); i++){
             const cellSquare = document.createElement("div");
             if(selectBody.value === "insane"){
@@ -64,12 +68,14 @@ playGameButton.addEventListener("click", function(){
             azzurro ed emetto un messaggio in console con il numero della cella 
             cliccata.*/
             cellSquare.addEventListener("click", function(){
-                this.classList.add("blue-bg-color");
+                if(bombsList.includes(i)){
+                    this.classList.add("red-bg-color");
+                } else {
+                    this.classList.add("blue-bg-color");
+                }
                 console.log(this.innerHTML);
             });
-    
             cellContainer.append(cellSquare);
         }
-        console.log(bombsGenerator(bombsList));
     }  
 });
